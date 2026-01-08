@@ -1,0 +1,42 @@
+.brandBar {
+    background: linear-gradient(90deg, #f8f8f8 0%, #f2f2f2 50%, #f8f8f8 100%);
+    overflow: hidden;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+}
+
+.track {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+}
+
+.brand {
+    font-family: var(--font-heading);
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+}
+
+.brand:hover {
+    opacity: 1;
+    color: var(--primary);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}

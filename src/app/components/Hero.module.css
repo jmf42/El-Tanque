@@ -1,0 +1,207 @@
+.hero {
+    position: relative;
+    height: 80vh;
+    /* Large impactful hero */
+    min-height: 500px;
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.65) 100%);
+    z-index: 1;
+    backdrop-filter: blur(1px);
+}
+
+/* Background image handling */
+.bgImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    /* Blur slightly to make text pop if image is busy */
+    filter: brightness(0.85);
+    /* Slightly lighter than before */
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.title {
+    font-family: var(--font-heavy);
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.brandScript {
+    font-family: var(--font-accent);
+    color: var(--primary);
+    text-transform: none;
+    font-size: 7rem;
+    display: block;
+    margin-top: -0.5rem;
+    font-weight: 400;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.sinceBadge {
+    background-color: var(--primary);
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    box-shadow: var(--shadow-md);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    font-weight: 400;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.reviews {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+}
+
+.stars {
+    color: #FFD700;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+.reviewText {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.ctaButton {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary) 0%, #B32424 100%);
+    color: white;
+    padding: 1.25rem 3.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 4px 16px rgba(204, 51, 51, 0.35), 0 2px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+}
+
+.ctaButton:hover {
+    background: linear-gradient(135deg, #B32424 0%, #991B1B 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(204, 51, 51, 0.4), 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ctaButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(204, 51, 51, 0.3);
+}
+
+.ctaButton:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 55vh;
+        min-height: 400px;
+    }
+
+    .content {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+
+    .brandScript {
+        font-size: 4.5rem;
+        margin-top: 0;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .reviews {
+        margin-bottom: 2rem;
+    }
+
+    .stars {
+        font-size: 1.25rem;
+    }
+
+    .ctaButton {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    .sinceBadge {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .brandScript {
+        font-size: 4.0rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .ctaButton {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+}

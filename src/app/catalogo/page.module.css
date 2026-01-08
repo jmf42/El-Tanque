@@ -1,0 +1,147 @@
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+
+.layout {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.title {
+    font-family: var(--font-heading);
+    color: var(--text);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.mainContent {
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.cartFloating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 0 8px 24px rgba(204, 51, 51, 0.35);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    z-index: 1000;
+    transition: var(--transition-bounce);
+    animation: slideUpIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cartFloating:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(204, 51, 51, 0.45);
+    background: var(--primary-hover);
+}
+
+.cartFloating:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.cartIconWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartBadge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: white;
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--primary);
+}
+
+.cartText {
+    white-space: nowrap;
+}
+
+@keyframes slideUpIn {
+    from {
+        transform: translateY(100px) scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.noResults {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--text-secondary);
+}
+
+@keyframes slideUpIn {
+    from {
+        transform: translateY(100px) scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,17 @@
+.starRating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    color: #ffb400;
+    /* Gold/yellow star color */
+}
+
+.star.empty {
+    color: #e0e0e0;
+    /* Gray for empty stars */
+}

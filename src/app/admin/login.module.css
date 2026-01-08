@@ -1,0 +1,70 @@
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+}
+
+.card {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    color: var(--secondary);
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input {
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    padding: 0.5rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.02);
+}
+
+.error {
+    color: #D32F2F;
+    font-weight: bold;
+}
