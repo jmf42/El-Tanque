@@ -114,7 +114,7 @@ function CatalogContent() {
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
                     >
-                        <option value="default">Ordenar por</option>
+                        <option value="default" disabled>Ordenar por</option>
                         <option value="price-asc">Menor precio</option>
                         <option value="price-desc">Mayor precio</option>
                         <option value="name">Nombre A-Z</option>

@@ -1,17 +1,17 @@
 .page {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1.5rem;
     min-height: 100vh;
 }
 
 .title {
     font-family: var(--font-heading);
     color: var(--text);
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 /* Sticky Filters Wrapper */
@@ -125,18 +125,17 @@
 
 /* Layout */
 .layout {
-    display: flex;
-    gap: 3rem;
+    display: block;
 }
 
 .mainContent {
-    flex: 1;
+    width: 100%;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
 }
 
 /* Card Animation Wrapper */
@@ -252,7 +251,7 @@
     }
 
     .title {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         margin-bottom: 0.75rem;
         padding-bottom: 0.5rem;
     }

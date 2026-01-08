@@ -16,7 +16,7 @@
 .brand {
     font-family: var(--font-heading);
     color: #666;
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     opacity: 0.7;

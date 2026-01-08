@@ -24,6 +24,7 @@ export function middleware(request: NextRequest) {
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' blob: data: https://*.google.com https://*.googleapis.com https://i.imgur.com;
     font-src 'self' https://fonts.gstatic.com;
+    frame-src https://www.google.com https://maps.google.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
