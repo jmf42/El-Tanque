@@ -15,40 +15,51 @@ import { Suspense } from 'react';
 function CatalogContent() {
     const { products, cart } = useShop();
     const searchParams = useSearchParams();
-    const searchQuery = searchParams.get('q') || '';
+    const urlSearchQuery = searchParams.get('q') || '';
 
     const [category, setCategory] = useState('Todos');
     const [priceRange, setPriceRange] = useState('Todos');
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [localSearch, setLocalSearch] = useState(urlSearchQuery);
+    const [sortBy, setSortBy] = useState('default');
 
-    // Reset category if search query changes significantly, or keep it?
-    // User might want to search WITHIN a category.
-    // For now, let's keep them independent.
+    // Sync URL search with local search on mount
+    useEffect(() => {
+        setLocalSearch(urlSearchQuery);
+    }, [urlSearchQuery]);
 
     const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
 
-    const filteredProducts = products.filter(p => {
-        // Filter by Category
-        const matchesCategory = category === 'Todos' || p.category === category;
+    const filteredProducts = products
+        .filter(p => {
+            // Filter by Category
+            const matchesCategory = category === 'Todos' || p.category === category;
 
-        // Filter by Search Query
-        const matchesSearch = searchQuery
-            ? p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            p.category.toLowerCase().includes(searchQuery.toLowerCase())
-            : true;
+            // Filter by Search Query (use local search)
+            const searchTerm = localSearch.toLowerCase();
+            const matchesSearch = searchTerm
+                ? p.name.toLowerCase().includes(searchTerm) ||
+                p.category.toLowerCase().includes(searchTerm)
+                : true;
 
-        // Filter by Price Range
-        let matchesPrice = true;
-        if (priceRange === 'Hasta $10.000') {
-            matchesPrice = (p.price || 0) <= 10000;
-        } else if (priceRange === '$10.000 a $50.000') {
-            matchesPrice = (p.price || 0) > 10000 && (p.price || 0) <= 50000;
-        } else if (priceRange === 'Más de $50.000') {
-            matchesPrice = (p.price || 0) > 50000;
-        }
+            // Filter by Price Range
+            let matchesPrice = true;
+            if (priceRange === 'Hasta $10.000') {
+                matchesPrice = (p.price || 0) <= 10000;
+            } else if (priceRange === '$10.000 a $50.000') {
+                matchesPrice = (p.price || 0) > 10000 && (p.price || 0) <= 50000;
+            } else if (priceRange === 'Más de $50.000') {
+                matchesPrice = (p.price || 0) > 50000;
+            }
 
-        return matchesCategory && matchesSearch && matchesPrice;
-    });
+            return matchesCategory && matchesSearch && matchesPrice;
+        })
+        .sort((a, b) => {
+            if (sortBy === 'price-asc') return (a.price || 0) - (b.price || 0);
+            if (sortBy === 'price-desc') return (b.price || 0) - (a.price || 0);
+            if (sortBy === 'name') return a.name.localeCompare(b.name);
+            return 0;
+        });
 
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -56,11 +67,34 @@ function CatalogContent() {
         <main>
             <Navbar />
             <div className={styles.page}>
-                <h1 className={styles.title}>
-                    {searchQuery ? `Resultados para "${searchQuery}"` : 'Catálogo Completo'}
-                </h1>
+                <h1 className={styles.title}>Catálogo Completo</h1>
 
-                <div className={styles.layout}>
+                {/* Sticky Filter Section */}
+                <div className={styles.filtersWrapper}>
+                    {/* Search Bar */}
+                    <div className={styles.searchBar}>
+                        <svg className={styles.searchIcon} xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                        <input
+                            type="text"
+                            className={styles.searchInput}
+                            placeholder="Buscar productos..."
+                            value={localSearch}
+                            onChange={(e) => setLocalSearch(e.target.value)}
+                        />
+                        {localSearch && (
+                            <button
+                                className={styles.clearSearch}
+                                onClick={() => setLocalSearch('')}
+                                aria-label="Limpiar búsqueda"
+                            >
+                                ✕
+                            </button>
+                        )}
+                    </div>
+
                     <CatalogSidebar
                         categories={categories}
                         selectedCategory={category}
@@ -68,12 +102,37 @@ function CatalogContent() {
                         selectedPriceRange={priceRange}
                         onSelectPriceRange={setPriceRange}
                     />
+                </div>
 
+                {/* Toolbar: Counter + Sort */}
+                <div className={styles.toolbar}>
+                    <span className={styles.resultCount}>
+                        {filteredProducts.length} {filteredProducts.length === 1 ? 'producto' : 'productos'}
+                    </span>
+                    <select
+                        className={styles.sortSelect}
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                    >
+                        <option value="default">Ordenar por</option>
+                        <option value="price-asc">Menor precio</option>
+                        <option value="price-desc">Mayor precio</option>
+                        <option value="name">Nombre A-Z</option>
+                    </select>
+                </div>
+
+                <div className={styles.layout}>
                     <div className={styles.mainContent}>
                         {filteredProducts.length > 0 ? (
                             <div className={styles.grid}>
-                                {filteredProducts.map(product => (
-                                    <ProductCard key={product.id} product={product} />
+                                {filteredProducts.map((product, index) => (
+                                    <div
+                                        key={product.id}
+                                        className={styles.cardWrapper}
+                                        style={{ animationDelay: `${index * 0.05}s` }}
+                                    >
+                                        <ProductCard product={product} />
+                                    </div>
                                 ))}
                             </div>
                         ) : (

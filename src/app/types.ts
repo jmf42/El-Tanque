@@ -17,7 +17,7 @@ export const INITIAL_PRODUCTS: Product[] = [
         name: 'Cemento Loma Negra 50kg',
         category: 'Corralón',
         price: 9800,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Bolsa_de_cemento_Loma_Negra_01.JPG',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_955089-MLA99590617476_122025-O.webp',
         description: 'Cemento Portland de alta resistencia (CPC 40). El más confiable para estructuras y hormigón armado.'
     },
     {

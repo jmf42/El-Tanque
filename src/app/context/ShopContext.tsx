@@ -30,7 +30,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
 
     // Load products from localStorage or use initial on mount
     useEffect(() => {
-        const savedProducts = localStorage.getItem('eltanque_products_v6');
+        const savedProducts = localStorage.getItem('eltanque_products_v7');
         if (savedProducts) {
             setProducts(JSON.parse(savedProducts));
         } else {
@@ -45,7 +45,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     // Save products whenever they change
     useEffect(() => {
         if (products.length > 0) {
-            localStorage.setItem('eltanque_products_v6', JSON.stringify(products));
+            localStorage.setItem('eltanque_products_v7', JSON.stringify(products));
         }
     }, [products]);
 
